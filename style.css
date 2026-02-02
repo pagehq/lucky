@@ -1,0 +1,87 @@
+:root{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+body{
+  margin: 0;
+  padding: 24px;
+  background: #f6f7fb;
+  color: #111;
+  display: flex;
+  justify-content: center;
+}
+
+.wrap{
+  width: min(920px, 100%);
+}
+
+.box{
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cell{
+  border: 1px solid #e9ebf2;
+  border-radius: 12px;
+  padding: 10px;
+  background: #fafbff;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  user-select: none;
+}
+
+.cell input{
+  width: 18px;
+  height: 18px;
+  accent-color: #111;
+}
+
+.cell span{
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.actions{
+  display: flex;
+  margin-top: 14px;
+  justify-content: flex-end;
+}
+
+button{
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #111;
+  color: #fff;
+}
+
+button:active{
+  transform: translateY(1px);
+}
+
+.output{
+  margin: 12px 2px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Mobile (QR-friendly) */
+@media (max-width: 620px){
+  body{ padding: 16px; }
+  .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .actions{ justify-content: stretch; }
+  button{ width: 100%; }
+}
