@@ -2,6 +2,7 @@ const grid = document.getElementById('grid');
 const out = document.getElementById('out');
 const hint = document.getElementById('hint');
 const sendBtn = document.getElementById('sendBtn');
+const reviewBtn = document.getElementById('reviewBtn');
 
 const items = [
   "Beach",
@@ -42,8 +43,9 @@ const items = [
   "Fourth of July"
 ];
 
-// bottone disabilitato all'inizio
-sendBtn.disabled = true;
+// Stato iniziale: mostra recensione, nascondi invia
+sendBtn.style.display = "none";
+reviewBtn.style.display = "inline-block";
 
 items.forEach((labelText, idx) => {
   const i = idx + 1;
@@ -54,28 +56,34 @@ items.forEach((labelText, idx) => {
   const cb = document.createElement('input');
   cb.type = 'checkbox';
   cb.value = labelText;
-  cb.id = `item_${i}`;
 
   const text = document.createElement('span');
-  text.textContent = labelText;
 
-  cb.addEventListener('change', updateButtonState);
+  const num = document.createElement('strong');
+  num.textContent = `${i}. `;
+
+  text.appendChild(num);
+  text.appendChild(document.createTextNode(labelText));
+
+  cb.addEventListener('change', updateUI);
 
   label.appendChild(cb);
   label.appendChild(text);
   grid.appendChild(label);
 });
 
-function updateButtonState() {
-  const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-  const count = checked.length;
+function updateUI() {
+  const count = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
-  sendBtn.disabled = count !== 5;
+  // INVIA oppure RECENSIONE
+  const isExactlyFive = count === 5;
+  sendBtn.style.display = isExactlyFive ? "inline-block" : "none";
+  reviewBtn.style.display = isExactlyFive ? "none" : "inline-block";
 
-  if (count === 5) {
-    hint.textContent = "Perfetto: 5 selezionate. Puoi premere INVIA.";
-  } else if (count < 5) {
+  if (count < 5) {
     hint.textContent = `Seleziona esattamente 5 voci (ne mancano ${5 - count}).`;
+  } else if (count === 5) {
+    hint.textContent = "Perfetto! Ora puoi premere INVIA.";
   } else {
     hint.textContent = `Hai selezionato ${count} voci: devono essere esattamente 5.`;
   }
@@ -86,4 +94,8 @@ sendBtn.addEventListener('click', () => {
     .map(x => x.value);
 
   out.textContent = `Hai selezionato: ${checked.join(', ')}`;
+});
+
+reviewBtn.addEventListener('click', () => {
+  out.textContent = "Grazie! (Qui poi mettiamo il link reale alla recensione)";
 });
