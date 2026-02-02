@@ -1,25 +1,24 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Checklist 6x6</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checklist</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <div class="box">
-      <div id="grid" class="grid" aria-label="Scelte ambientazioni (seleziona esattamente 5)"></div>
+  <main class="box">
+    <div id="grid" class="grid"></div>
 
-      <div class="actions">
-        <button id="sendBtn" type="button">INVIA</button>
-        <button id="reviewBtn" type="button" class="secondary">LASCIA UNA RECENSIONE</button>
-      </div>
+    <div class="actions">
+      <button id="sendBtn" disabled>INVIA</button>
+      <span class="or">oppure</span>
+      <button id="reviewBtn" class="secondary" type="button">LASCIA UNA RECENSIONE</button>
     </div>
 
-    <p id="hint" class="hint">Seleziona esattamente 5 voci per vedere INVIA.</p>
-    <p id="out" class="output"></p>
-  </div>
+    <p id="hint" class="hint">Seleziona esattamente 5 voci.</p>
+    <p id="out" class="out"></p>
+  </main>
 
   <script src="script.js"></script>
 </body>
